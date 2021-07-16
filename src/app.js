@@ -13,17 +13,36 @@ const App = createStackNavigator();
 export default function ShopApp() {
   return (
     <>
-      <NavigationContainer style = {styles.container}>
+      <NavigationContainer style={styles.container}>
         <App.Navigator initialRouteName="Main">
-          <App.Screen name="Main" 
-            component={Main}   
+          <App.Screen
+            name="Main"
+            component={Main}
             options={{
-                headerShown: false
-             }} 
-            />
-          <App.Screen name="Authentication" component={Authentication} />
-          <App.Screen name="OrderHistory" component={OrderHistory} />
-          <App.Screen name="ChangeInfor" component={ChangeInfor} />
+              headerShown: false,
+            }}
+          />
+          <App.Screen
+            name="Authentication"
+            component={Authentication}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <App.Screen
+            name="OrderHistory"
+            component={OrderHistory}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <App.Screen
+            name="ChangeInfor"
+            component={ChangeInfor}
+            options={{
+              headerShown: false,
+            }}
+          />
         </App.Navigator>
       </NavigationContainer>
       <StatusBar style="hidden" />
