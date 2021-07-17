@@ -45,7 +45,7 @@ export default function ShopApp() {
           />
         </App.Navigator>
       </NavigationContainer>
-      <StatusBar style="hidden" />
+      <StatusBar style="auto" />
     </>
   );
 }
