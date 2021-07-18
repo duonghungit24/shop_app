@@ -28,7 +28,7 @@ export default function Shop({ navigation }) {
         style={{
           height: height / 6,
           padding:10,
-          backgroundColor: "yellow",
+          backgroundColor: "#2a9d8f",
           justifyContent:'space-around'
         }}
       >
@@ -37,10 +37,10 @@ export default function Shop({ navigation }) {
             style={{ marginTop: 30, marginLeft: 5 }}
             onPress={() => navigation.openDrawer()}
           >
-            <Icon name="bars" size={30} color="black" />
+            <Icon name="bars" size={30} color="#fff" />
           </TouchableOpacity>
           <Text
-            style={{ position: "absolute", top: 30, right: 150, fontSize: 20 }}
+            style={{ position: "absolute", top: 30, right: 150, fontSize: 20 , color:'#fff' }}
           >
             Men Shop
           </Text>
@@ -56,7 +56,7 @@ export default function Shop({ navigation }) {
             if (route.name === "Home") {
               return (
                 <Ionicons
-                  name={focused ? "home-outline" : "home"}
+                  name={focused ? "home" : "home-outline"}
                   size={size}
                   color={color}
                 />
@@ -65,7 +65,7 @@ export default function Shop({ navigation }) {
             if (route.name === "Cart") {
               return (
                 <Ionicons
-                  name={focused ? "cart-outline" : "cart"}
+                  name={focused ? "cart" : "cart-outline"}
                   size={size}
                   color={color}
                 />
@@ -74,7 +74,7 @@ export default function Shop({ navigation }) {
             if (route.name === "Search") {
               return (
                 <Ionicons
-                  name={focused ? "search-outline" : "search"}
+                  name={focused ? "search" : "search-outline"}
                   size={size}
                   color={color}
                 />
@@ -84,7 +84,7 @@ export default function Shop({ navigation }) {
             if (route.name === "Contact") {
               return (
                 <Ionicons
-                  name={focused ? "person-outline" : "person"}
+                  name={focused ? "person" : "person-outline"}
                   size={size}
                   color={color}
                 />
@@ -93,7 +93,7 @@ export default function Shop({ navigation }) {
           },
         })}
         tabBarOptions={{
-          activeTintColor: "tomato",
+          activeTintColor: "#2a9d8f",
           inactiveTintColor: "gray",
         }}
       >

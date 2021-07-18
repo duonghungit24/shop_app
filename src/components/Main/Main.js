@@ -19,7 +19,7 @@ export default function Main({ navigation }) {
         drawerType={"front"}
         overlayColor="0.5"
         drawerStyle={{
-          backgroundColor: "#c6cbef",
+          backgroundColor: "#edf6f9",
           width: "60%",
         }}
       >

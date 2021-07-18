@@ -19,6 +19,7 @@ export default function LocalBrand() {
     </View>
   );
 }
+
 const heigtImage = (height / 2000) * 500;
 const widthImage = width - 40;
 const styles = StyleSheet.create({
