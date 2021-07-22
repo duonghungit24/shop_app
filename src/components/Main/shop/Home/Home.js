@@ -1,14 +1,30 @@
-import React, { Component } from 'react';
-import { StyleSheet , ScrollView} from 'react-native';
-import LocalBrand from './LocalBrand';
-import ListProducts from './ListProducts';
-import TopProducts from './TopProducts';
-export default function Home({navigation}) {
-    return(
-        <ScrollView style={{flex: 1 }} showsVerticalScrollIndicator = {false}>
-            <LocalBrand/>
-            <ListProducts/>
-            <TopProducts/>
-        </ScrollView>   
-    )  
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeView from "./HomeView";
+import DetailProduct from "./detailProduct/DetailProduct";
+import ListProducts from "./ListProducts/ListProducts";
+
+const HomeStack = createStackNavigator();
+
+export default function Home() {
+  return (
+    <HomeStack.Navigator initialRouteName="DetailProduct">
+      <HomeStack.Screen
+        name="HomeView"
+        component={HomeView}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen
+        name="DetailProduct"
+        component={DetailProduct}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen name="ListProducts" component={ListProducts} />
+    </HomeStack.Navigator>
+  );
 }

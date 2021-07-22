@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
+import { View, Text, StyleSheet, Dimensions, Image , TouchableOpacity } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 const imageList = [
@@ -13,14 +13,14 @@ const imageList = [
   { id: 8, name: 'Áo Real Good', price: '150.000 VND', url: require("../../../../media/ao8.jpg") },
 ];
 
-export default function TopProducts() {
+export default function TopProducts({navigation}) {
   const { container, title, img ,wrapTitle ,bodyImg,wrapImg } = styles;
   return (
     <View style={container}>
       <View style={wrapTitle}>
         <Text style={title}>Top Products</Text>
       </View>
-      <View style={bodyImg}>
+      <TouchableOpacity style={bodyImg} onPress={() => navigation.navigate('DetailProduct')}>
         {imageList.map((e, i) => (
           <View  style = {wrapImg}  >
             <Image
@@ -32,7 +32,7 @@ export default function TopProducts() {
             <Text>{e.price}</Text>
           </View>
         ))}
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
