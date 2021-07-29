@@ -9,7 +9,7 @@ const HomeStack = createStackNavigator();
 
 export default function Home() {
   return (
-    <HomeStack.Navigator initialRouteName="DetailProduct">
+    <HomeStack.Navigator initialRouteName="HomeView">
       <HomeStack.Screen
         name="HomeView"
         component={HomeView}
