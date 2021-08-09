@@ -61,7 +61,7 @@ export default function Menu(props) {
         </Pressable>
     </View>
     <View style={btn}>
-        <Pressable onPress={() => gotoAuthenticaiton()} style={button}>
+        <Pressable onPress={() => setLogIn(false)} style={button}>
           <Text style={textView}>Sign out</Text>
         </Pressable>
     </View>
