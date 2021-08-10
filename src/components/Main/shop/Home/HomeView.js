@@ -8,7 +8,7 @@ export default function HomeView({navigation}) {
     return(
         <ScrollView style={{flex: 1 }} showsVerticalScrollIndicator = {false}>
             <LocalBrand/>
-            <ListProductsHot/>
+            <ListProductsHot navigation = {navigation}/>
             <TopProducts navigation = {navigation}/>
         </ScrollView>   
     )  

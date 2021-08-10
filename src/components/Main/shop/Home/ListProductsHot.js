@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  TouchableOpacity
 } from "react-native";
 
 const { height, width } = Dimensions.get("window");
@@ -16,7 +17,10 @@ const imageList = [
   { id: 4, url: require("../../../../media/hot4.jpg") },
 ];
 
-export default function ListProducts() {
+export default function ListProducts({navigation}) {
+  const gotoListProducts = () => {
+      navigation.navigate('ListProducts');
+  }
   const { wrapper, textWrap, img, imgWrap, text , wrapdot , dotActive, dot } = styles;
   const [imgActive, setImgActive] = useState(0);
   const onchange = (nativeEvent) => {
@@ -29,7 +33,7 @@ export default function ListProducts() {
       }
   }
   return (
-    <View style={wrapper}>
+    <TouchableOpacity style={wrapper} onPress={gotoListProducts}>
       <View style={textWrap}>
         <Text style={text}>List Products Hot</Text>
       </View>
@@ -42,7 +46,7 @@ export default function ListProducts() {
         >
           {imageList.map((image, index) => (
             <Image
-              key={image}
+              key={image.id}
               style={img}
               resizeMode="stretch"
               source={image.url}
@@ -53,8 +57,8 @@ export default function ListProducts() {
             { 
               imageList.map((image,index) => 
                 <Text
-                  key = {image}
-                  style = {imgActive == index ? dotActive : dot}
+                  key = {image.id}
+                  style = {imgActive == image.id-1 ? dotActive : dot}
                 >
                   o
                 </Text>
@@ -62,7 +66,7 @@ export default function ListProducts() {
             }
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

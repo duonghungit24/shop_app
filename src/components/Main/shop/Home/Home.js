@@ -24,7 +24,13 @@ export default function Home() {
           headerShown: false,
         }}
       />
-      <HomeStack.Screen name="ListProducts" component={ListProducts} />
+      <HomeStack.Screen
+        name="ListProducts"
+        component={ListProducts}
+        options={{
+          headerShown: false,
+        }}
+      />
     </HomeStack.Navigator>
   );
 }
