@@ -1,4 +1,4 @@
-import React, { Component , useState } from "react";
+import React, { Component, useState } from "react";
 import {
   Text,
   View,
@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 
 const { height, width } = Dimensions.get("window");
@@ -17,56 +17,58 @@ const imageList = [
   { id: 4, url: require("../../../../media/hot4.jpg") },
 ];
 
-export default function ListProducts({navigation}) {
+export default function ListProducts({ navigation }) {
   const gotoListProducts = () => {
-      navigation.navigate('ListProducts');
-  }
-  const { wrapper, textWrap, img, imgWrap, text , wrapdot , dotActive, dot } = styles;
+    navigation.navigate("ListProducts");
+  };
+  const { wrapper, textWrap, img, imgWrap, text, wrapdot, dotActive, dot } =
+    styles;
   const [imgActive, setImgActive] = useState(0);
   const onchange = (nativeEvent) => {
-      if(nativeEvent) {
-        const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
-        if(slide != imgActive)
-         { 
-           setImgActive(slide);
-         }
+    if (nativeEvent) {
+      const slide = Math.ceil(
+        nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width
+      );
+      if (slide != imgActive) {
+        setImgActive(slide);
       }
-  }
+    }
+  };
   return (
-    <TouchableOpacity style={wrapper} onPress={gotoListProducts}>
+    <View style={wrapper}>
       <View style={textWrap}>
         <Text style={text}>List Products Hot</Text>
       </View>
       <View style={imgWrap}>
         <ScrollView
-          onScroll = {({nativeEvent}) => onchange(nativeEvent)}
+          onScroll={({ nativeEvent }) => onchange(nativeEvent)}
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           horizontal
         >
           {imageList.map((image, index) => (
-            <Image
-              key={image.id}
-              style={img}
-              resizeMode="stretch"
-              source={image.url}
-            />
+            <TouchableOpacity onPress = {gotoListProducts}>
+              <Image
+                key={image.id}
+                style={img}
+                resizeMode="stretch"
+                source={image.url}
+              />
+            </TouchableOpacity>
           ))}
         </ScrollView>
-        <View style = {wrapdot}>
-            { 
-              imageList.map((image,index) => 
-                <Text
-                  key = {image.id}
-                  style = {imgActive == image.id-1 ? dotActive : dot}
-                >
-                  o
-                </Text>
-              )
-            }
+        <View style={wrapdot}>
+          {imageList.map((image, index) => (
+            <Text
+              key={image.id}
+              style={imgActive == image.id - 1 ? dotActive : dot}
+            >
+              o
+            </Text>
+          ))}
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
@@ -104,18 +106,18 @@ const styles = StyleSheet.create({
     height: heigtImage,
     width: widthImage,
   },
-  wrapdot : {
+  wrapdot: {
     position: "absolute",
-    flexDirection:'row',
-    alignSelf:'center',
+    flexDirection: "row",
+    alignSelf: "center",
     bottom: 5,
   },
-  dotActive : {
-    color: '#ffbe0b',
-    margin:3,
+  dotActive: {
+    color: "#ffbe0b",
+    margin: 3,
   },
   dot: {
-    color: '#fff', 
-    margin : 3,
-  } 
+    color: "#fff",
+    margin: 3,
+  },
 });
