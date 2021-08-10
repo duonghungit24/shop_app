@@ -22,7 +22,7 @@ const height = Dimensions.get("window").height;
 
 const Tab = createBottomTabNavigator();
 
-export default function Shop({ navigation }) {
+export default function Shop({ navigation, route }) {
   return (
     <View style={{ flex: 1 }}>
       <View
