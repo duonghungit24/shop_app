@@ -8,7 +8,6 @@ import {
   Pressable,
   Dimensions,
   KeyboardAvoidingView,
-  SafeAreaView,
   Alert
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -44,7 +43,7 @@ export default function Authentication({ navigation }) {
     noActive
   } = styles;
   return (
-    <KeyboardAvoidingView style={container}>
+    <KeyboardAvoidingView style={container} >
       <View style={header}>
         <Text>Avatar shop</Text>
       </View>
@@ -59,7 +58,7 @@ export default function Authentication({ navigation }) {
           </View>
           <View>
             <Text style={textInput}>Password</Text>
-            <TextInput style = {input} placeholder="Your Password" />
+            <TextInput style = {input}  placeholder="Your Password" />
           </View>
         </View>
         <Pressable style = {btnLogin}>

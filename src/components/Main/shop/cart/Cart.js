@@ -1,10 +1,28 @@
-import React, { Component } from 'react';
-import { StyleSheet , View , Text ,Button} from 'react-native';
+import React, { Component } from "react";
+import { View, Text } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import CartView from "./CartView";
+import DetailProduct from "../Home/detailProduct/DetailProduct";
 
-export default function Cart({navigation}) {
-    return(
-        <View style={{flex: 1 , justifyContent:'center', alignItems: 'center' , backgroundColor:'white'}}>
-            <Text>Cart</Text>
-        </View>   
-    )  
+const CartStack = createStackNavigator();
+
+export default function Cart() {
+  return (
+    <CartStack.Navigator>
+      <CartStack.Screen
+        name="CartView"
+        component={CartView}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <CartStack.Screen
+        name="DetailProduct"
+        component={DetailProduct}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </CartStack.Navigator>
+  );
 }

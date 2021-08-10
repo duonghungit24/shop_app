@@ -96,6 +96,7 @@ export default function Shop({ navigation }) {
         tabBarOptions={{
           activeTintColor: "#2a9d8f",
           inactiveTintColor: "gray",
+          keyboardHidesTabBar: true 
         }}
       >
         <Tab.Screen name="Home" component={Home} />
