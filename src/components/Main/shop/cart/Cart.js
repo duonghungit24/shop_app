@@ -8,7 +8,7 @@ const CartStack = createStackNavigator();
 
 export default function Cart() {
   return (
-    <CartStack.Navigator>
+    <CartStack.Navigator initialRouteName = "CartView">
       <CartStack.Screen
         name="CartView"
         component={CartView}

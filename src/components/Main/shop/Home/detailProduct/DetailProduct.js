@@ -25,14 +25,18 @@ const listData = [
   },
 ];
 
-export default function DetailProduct({ navigation }) {
+export default function DetailProduct({ navigation, route }) {
+  const { name, price, imgUrl } = route.params;
   const [active, setActive] = useState(false);
   const { container, body, header, iconStyle } = styles;
   const goback = () => {
     navigation.goBack();
   };
   const goToCart = () => {
-    navigation.navigate("Cart");
+    navigation.navigate("Cart", {
+      screen: "CartView",
+      params: { name: name, price: price, imgUrl: imgUrl },
+    });
     setActive(true);
   };
   return (
@@ -52,7 +56,7 @@ export default function DetailProduct({ navigation }) {
       </View>
       <View style={body}>
         <View style={{ flex: 1, backgroundColor: "red" }}>
-            {/* <ScrollView>
+          {/* <ScrollView>
                 {listData.listImg.map((img,index) => (
                     <View><Text>hehe</Text></View>
                 ))}
