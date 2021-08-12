@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image, Dimensions ,Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  ScrollView,
+  Pressable,
+  Alert,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 const { height, width } = Dimensions.get("window");
@@ -15,36 +24,63 @@ export default function CartView({ navigation, route }) {
     leftText,
     iconClose,
     sizeText,
-    textTotal
+    textTotal,
+    totalPrice,
+    money,
+    wrapTotal,
+    sumTotal,
+    btnCheckOut,
+    textBtn
   } = styles;
-  const { imgUrl, name, price } = route.params;
+  const { listProduct } = route.params;
   return (
     <View style={container}>
-      <View style={wrapProduct}>
-        <Image style={img} source={imgUrl} />
-        <View style={{ marginLeft: 15, justifyContent: "space-around" }}>
-          <Text style={nameText}>{name}</Text>
-          <Text style={{ fontSize: 16 }}>{price}</Text>
-          <View style={iconUpDow}>
-            <Ionicons name="remove-circle-outline" color="#2a9d8f" size={25} />
-            <Text style={{ margin: 5 }}>1</Text>
-            <Ionicons name="add-circle-outline" color="#2a9d8f" size={25} />
+      <ScrollView 
+        showsVerticalScrollIndicator = {false}
+      >
+        {
+          listProduct.map((product, index) => (
+            <View style={wrapProduct} key = {index}>
+            <Image style={img} source={product.imgUrl} />
+            <View style={{ marginLeft: 15, justifyContent: "space-around" }}>
+              <Text style={nameText}>{product.name}</Text>
+              <Text style={{ fontSize: 16 }}>{product.price}</Text>
+              <View style={iconUpDow}>
+                <Ionicons name="remove-circle-outline" color="#2a9d8f" size={25} />
+                <Text style={{ margin: 5 }}>1</Text>
+                <Ionicons name="add-circle-outline" color="#2a9d8f" size={25} />
+              </View>
+            </View>
+            <View style={leftText}>
+              <Ionicons
+                style={iconClose}
+                name="close-circle-outline"
+                color="#2a9d8f"
+                size={25}
+              />
+              <Text style={sizeText}>{product.size}</Text>
+            </View>
           </View>
-        </View>
-        <View style={leftText}>
-          <Ionicons style = {iconClose} name="close-circle-outline" color="#2a9d8f" size={25} />
-          <Text style={sizeText}>Size M</Text>
-        </View>
-      </View>
-      <View style={wrapProduct}></View>
-      <View style={wrapProduct}></View>
+          ))
+        }
+      </ScrollView>
       <View style={checkout}>
-            <Text style = {textTotal}>Sub Total</Text>
-            <Text style = {textTotal}>Shipping</Text>
-            <Text>Total</Text>
-            <Pressable>
-                <Text>Proceed Checkout</Text>
-            </Pressable>
+        <View style = {wrapTotal}>
+          <Text style={textTotal}>Sub Total</Text>
+          <Text style = {money}>500.000 Vnd</Text>
+        </View>
+        <View style = {wrapTotal}>
+          <Text style={textTotal}>Shipping</Text>
+          <Text style = {money}>30.000 Vnd</Text>
+        </View>
+        <View style = {wrapTotal}>
+          <Text style={sumTotal}>Total</Text>
+          <Text style = {totalPrice}>580.000 Vnd</Text>
+        </View>
+        <Pressable style = {btnCheckOut}>
+          <Text style = {textBtn}>Proceed Checkout</Text>
+          {/* <Text>itemId: {JSON.stringify(listProduct)}</Text> */}
+        </Pressable>
       </View>
     </View>
   );
@@ -67,13 +103,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
     elevation: 2,
-    borderRadius:10,
+    borderRadius: 10,
   },
   img: {
     width: (width - 20) * 0.3,
     height: height / 6,
     resizeMode: "cover",
-    borderRadius:10,
+    borderRadius: 10,
   },
   nameText: {
     fontSize: 18,
@@ -81,27 +117,53 @@ const styles = StyleSheet.create({
   iconUpDow: {
     flexDirection: "row",
   },
-  leftText : {
+  leftText: {
     position: "absolute",
-    right : 0,
+    right: 0,
   },
-  iconClose : {
-    position: "absolute", 
-    right :0,
+  iconClose: {
+    position: "absolute",
+    right: 0,
   },
- sizeText: {
+  sizeText: {
     position: "absolute",
     fontSize: 16,
-    right : 10,
-    bottom : -(height/6-10),
+    right: 10,
+    bottom: -(height / 6 - 10),
   },
   checkout: {
-    justifyContent:"space-between",
-    backgroundColor: "blue",
+    height: height - 4*(height / 6)-40,
+    backgroundColor:'#fff',
     margin: 10,
   },
-  textTotal : {
-    fontSize:18,
-    padding:10
+  textTotal: {
+    fontSize: 18,
   },
+  sumTotal : {
+    fontSize: 20,
+  },
+  totalPrice : {
+    fontSize:20,
+  },
+  money: {
+    fontSize:16,
+  },
+  wrapTotal : {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10
+  },
+  btnCheckOut : {
+    position: "absolute",
+    width: width-20,
+    padding:12,
+    backgroundColor: "#43aa8b",
+    borderRadius: 20,
+    bottom:5
+  },
+  textBtn : {
+    fontSize:18,
+    color:'#fff',
+    textAlign: "center",
+  }
 });

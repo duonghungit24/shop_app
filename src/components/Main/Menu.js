@@ -47,7 +47,7 @@ export default function Menu(props) {
   const logOut = (
     <View style={containerLogOut}>
       <View style={containerTextHeader}>
-           <Text style={textHeader}>Dương Văn Hùng</Text>
+           <Text style={textHeader}>Dương Hùng</Text>
       </View>
      
       <View style={btn}>

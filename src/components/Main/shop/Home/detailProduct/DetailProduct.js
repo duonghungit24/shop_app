@@ -24,7 +24,8 @@ const listData = [
     ],
   },
 ];
-
+const listProduct = [
+];
 export default function DetailProduct({ navigation, route }) {
   const { name, price, imgUrl } = route.params;
   const [active, setActive] = useState(false);
@@ -33,9 +34,10 @@ export default function DetailProduct({ navigation, route }) {
     navigation.goBack();
   };
   const goToCart = () => {
+    listProduct.push({name: name, price: price, imgUrl: imgUrl,size:"M"});
     navigation.navigate("Cart", {
       screen: "CartView",
-      params: { name: name, price: price, imgUrl: imgUrl },
+      params: {listProduct: listProduct},
     });
     setActive(true);
   };
