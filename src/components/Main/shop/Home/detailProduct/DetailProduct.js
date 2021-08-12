@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { set } from "react-native-reanimated";
 
 const listData = [
   {
@@ -34,12 +35,13 @@ export default function DetailProduct({ navigation, route }) {
     navigation.goBack();
   };
   const goToCart = () => {
-    listProduct.push({name: name, price: price, imgUrl: imgUrl,size:"M"});
+    listProduct.push({ name: name, price: price, imgUrl: imgUrl,size:"M"});
     navigation.navigate("Cart", {
       screen: "CartView",
       params: {listProduct: listProduct},
     });
     setActive(true);
+    navigation.push("cdHomeView");
   };
   return (
     <View style={container}>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Componen, useState } from "react";
 import {
   View,
   Text,
@@ -30,25 +30,54 @@ export default function CartView({ navigation, route }) {
     wrapTotal,
     sumTotal,
     btnCheckOut,
-    textBtn
+    textBtn,
   } = styles;
   const { listProduct } = route.params;
+  const [amount, setAmount] = useState(1);
+  const [activeUp , setActiveUp] = useState(false)
+  const [activeDown , setActiveDown] = useState(false)
+  const upProduct = () => {
+    setActiveDown(false);
+    setActiveUp(true);
+    setAmount(amount + 1);
+  };
+  const decreaseProduct = () => {
+    setActiveUp(false);
+    setActiveDown(true);
+    if (amount == 1) 
+    {
+      setActiveDown(false);
+      return;
+    }
+      
+    else {
+      setAmount(amount - 1);
+    }
+  };
   return (
     <View style={container}>
-      <ScrollView 
-        showsVerticalScrollIndicator = {false}
-      >
-        {
-          listProduct.map((product, index) => (
-            <View style={wrapProduct} key = {index}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {listProduct.map((product, index) => (
+          <View style={wrapProduct} key={index}>
             <Image style={img} source={product.imgUrl} />
             <View style={{ marginLeft: 15, justifyContent: "space-around" }}>
               <Text style={nameText}>{product.name}</Text>
               <Text style={{ fontSize: 16 }}>{product.price}</Text>
-              <View style={iconUpDow}>
-                <Ionicons name="remove-circle-outline" color="#2a9d8f" size={25} />
-                <Text style={{ margin: 5 }}>1</Text>
-                <Ionicons name="add-circle-outline" color="#2a9d8f" size={25} />
+              <View style={iconUpDow}  >
+                <Ionicons
+                  name={ activeDown ? "remove-circle" : "remove-circle-outline"}
+                  color="#2a9d8f"
+                  size={25}
+                  onPress={decreaseProduct}
+            
+                />
+                <Text style={{ margin: 5 }}>{amount}</Text>
+                <Ionicons
+                  name={activeUp ? "add-circle" : "add-circle-outline"}
+                  color="#2a9d8f"
+                  size={25}
+                  onPress={upProduct}
+                />
               </View>
             </View>
             <View style={leftText}>
@@ -61,25 +90,23 @@ export default function CartView({ navigation, route }) {
               <Text style={sizeText}>{product.size}</Text>
             </View>
           </View>
-          ))
-        }
+        ))}
       </ScrollView>
       <View style={checkout}>
-        <View style = {wrapTotal}>
+        <View style={wrapTotal}>
           <Text style={textTotal}>Sub Total</Text>
-          <Text style = {money}>500.000 Vnd</Text>
+          <Text style={money}>500.000 Vnd</Text>
         </View>
-        <View style = {wrapTotal}>
+        <View style={wrapTotal}>
           <Text style={textTotal}>Shipping</Text>
-          <Text style = {money}>30.000 Vnd</Text>
+          <Text style={money}>30.000 Vnd</Text>
         </View>
-        <View style = {wrapTotal}>
+        <View style={wrapTotal}>
           <Text style={sumTotal}>Total</Text>
-          <Text style = {totalPrice}>580.000 Vnd</Text>
+          <Text style={totalPrice}>580.000 Vnd</Text>
         </View>
-        <Pressable style = {btnCheckOut}>
-          <Text style = {textBtn}>Proceed Checkout</Text>
-          {/* <Text>itemId: {JSON.stringify(listProduct)}</Text> */}
+        <Pressable style={btnCheckOut}>
+          <Text style={textBtn}>Proceed Checkout</Text>
         </Pressable>
       </View>
     </View>
@@ -132,38 +159,38 @@ const styles = StyleSheet.create({
     bottom: -(height / 6 - 10),
   },
   checkout: {
-    height: height - 4*(height / 6)-40,
-    backgroundColor:'#fff',
+    height: height - 4 * (height / 6) - 40,
+    backgroundColor: "#fff",
     margin: 10,
   },
   textTotal: {
     fontSize: 18,
   },
-  sumTotal : {
+  sumTotal: {
     fontSize: 20,
   },
-  totalPrice : {
-    fontSize:20,
+  totalPrice: {
+    fontSize: 20,
   },
   money: {
-    fontSize:16,
+    fontSize: 16,
   },
-  wrapTotal : {
+  wrapTotal: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 10
+    padding: 10,
   },
-  btnCheckOut : {
+  btnCheckOut: {
     position: "absolute",
-    width: width-20,
-    padding:12,
+    width: width - 20,
+    padding: 12,
     backgroundColor: "#43aa8b",
     borderRadius: 20,
-    bottom:5
+    bottom: 5,
   },
-  textBtn : {
-    fontSize:18,
-    color:'#fff',
+  textBtn: {
+    fontSize: 18,
+    color: "#fff",
     textAlign: "center",
-  }
+  },
 });
